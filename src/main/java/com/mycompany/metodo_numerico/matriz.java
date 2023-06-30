@@ -8,11 +8,11 @@ package com.mycompany.metodo_numerico;
  *
  * @author Familiar
  */
-public class matriz {
+public class Matriz {
     private int fila, columna;
     private int [][]matriz;
 
-    public matriz(int fila, int columna, int[][] matriz) {
+    public Matriz(int fila, int columna, int[][] matriz) {
         this.fila = fila;
         this.columna = columna;
         this.matriz = matriz;
