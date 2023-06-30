@@ -3,21 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.metodo_numerico;
-import javax.swing.JTable;
 
 /**
  *
  * @author Familiar
  */
-public class Matriz extends JTable {
+public class Matriz {
     private int fila, columna;
     private int [][]matriz;
 
-    public Matriz(int fila, int columna) {
+    public Matriz(int fila, int columna, int[][] matriz) {
         this.fila = fila;
         this.columna = columna;
-        this.matriz = new int[this.fila][this.columna];
-    }   
+        this.matriz = matriz;
+    }
 
     public int getFila() {
         return fila;
@@ -46,8 +45,4 @@ public class Matriz extends JTable {
     public void setMatriz(int fila, int columna) {
         this.matriz = new int[fila] [columna];
     }    
-    
-    public void cargarMatrizRandom(){
-        
-    }
 }
