@@ -4,18 +4,16 @@
  */
 package com.mycompany.metodo_numerico;
 
-/**
- *
- * @author Familiar
- */
-public class Matriz {
-    private int fila, columna;
-    private int [][]matriz;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
-    public Matriz(int fila, int columna, int[][] matriz) {
-        this.fila = fila;
-        this.columna = columna;
-        this.matriz = matriz;
+public class Matriz extends JTable {
+
+    private int fila, columna, dato;
+    private int[][] matriz;
+
+    public Matriz() {
     }
 
     public int getFila() {
@@ -38,11 +36,31 @@ public class Matriz {
         return matriz;
     }
 
+    public int getDato() {
+        return dato;
+    }
+
+    public void setDato(int dato) {
+        this.dato = dato;
+    }
+
     /*public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     } */
-    
     public void setMatriz(int fila, int columna) {
-        this.matriz = new int[fila] [columna];
-    }    
+        this.matriz = new int[fila][columna];
+    }
+
+    public void matrizAleatoria(JTable matriz) {
+        if (getColumna() == 0) {
+            JOptionPane.showMessageDialog(null, "matriz no configurada", "Error", HEIGHT);
+        } else {
+            for (int i = 0; i < getFila(); i++) {
+                for (int j = 0; j < getColumna(); j++) {
+                    int numeroAleatorio = (int) (Math.random() * 10 + 1);
+                    matriz.setValueAt(numeroAleatorio, i, j);
+                }
+            }
+        }
+    }
 }
