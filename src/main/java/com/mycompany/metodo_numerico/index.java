@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Familiar
  */
 public class index extends javax.swing.JFrame {
-    Matriz matriz = new Matriz(3, 4, new int[3][4]);
+    Matriz matriz = new Matriz();
     DefaultTableModel modelo = new DefaultTableModel();
 
     /**
@@ -38,6 +38,11 @@ public class index extends javax.swing.JFrame {
         btnGenerarMatriz = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItemLlenarMatriz = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +69,26 @@ public class index extends javax.swing.JFrame {
         jLabel1.setText("Cantidad de filas:");
 
         jLabel2.setText("Cantidad de columnas:");
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Acciones");
+
+        jMenuItemLlenarMatriz.setText("Llenar Matriz");
+        jMenuItemLlenarMatriz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLlenarMatrizActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemLlenarMatriz);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +129,7 @@ public class index extends javax.swing.JFrame {
                         .addComponent(btnGenerarMatriz)
                         .addGap(43, 43, 43)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +148,11 @@ public class index extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: introdusca la cantidad de Filas y Columnas");
         }        
     }//GEN-LAST:event_btnGenerarMatrizActionPerformed
+
+    private void jMenuItemLlenarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLlenarMatrizActionPerformed
+        // TODO add your handling code here:
+        matriz.matrizAleatoria(jTable1);
+    }//GEN-LAST:event_jMenuItemLlenarMatrizActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +195,11 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JTextField editTextFila;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemLlenarMatriz;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
