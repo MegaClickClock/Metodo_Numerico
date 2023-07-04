@@ -5,17 +5,21 @@
  */
 package com.mycompany.metodo_numerico;
 
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author examp
  */
-public class MatrizFloat {
+public class MatrizFloat extends JTable {
     final float nulo = (float) -9999.00;
     private int fila, columna;
     private float [][]matriz;
     private float []solucion = new float[3];
+    MatrizFloat matActual = this;        
 
     public MatrizFloat(int fila, int columna, float[][] matriz) {
         this.fila = fila;
@@ -57,10 +61,13 @@ public class MatrizFloat {
         this.matriz[fila][columna] = dato;
     } 
     
-    public void setMatriz(int fila, int columna, float[][] matriz) {
-        this.fila = fila;
-        this.columna = columna;                
-        this.matriz = matriz;        
+    public void setMatriz(JTable inputMatriz) {
+        this.matriz = new float [inputMatriz.getRowCount()][inputMatriz.getColumnCount()];
+        for (int i = 0; i < inputMatriz.getRowCount(); i++) {
+            for (int j = 0; j < inputMatriz.getColumnCount(); j++) {                
+                matriz[i][j] = Integer.parseInt( inputMatriz.getValueAt(i, j).toString());
+            }
+        }
     }   
     
     private void inicializar(){
@@ -176,8 +183,7 @@ public class MatrizFloat {
         }        
     }
     
-    public void metodoMontante(){
-       MatrizFloat matActual = this;
+    public void metodoMontante(){       
        ArrayList<Float> pivotes = new ArrayList<>();
        // El primer pivote siempre es 1...
        pivotes.add((float) 1);
@@ -198,7 +204,16 @@ public class MatrizFloat {
         this.setSolucion(matActual.getDato(0, 3), matActual.getDato(1, 3), matActual.getDato(2, 3));
         System.out.println("SOLUCION : ");
         matActual.mostrarDatos();
-        this.mostrarDatos();
-    }
+        this.mostrarDatos();        
+    }    
     
+    public void mostrarResultado(JTable matrizResultado){
+        for(int f=0; f<this.fila; f++){
+            for(int c=0; c<this.columna; c++){ 
+                //System.out.print(getDato(f, c) + ", ");
+                matrizResultado.setValueAt(matActual.getDato(f, c), f, c);
+            }
+            //System.out.println("");
+        }                               
+    }
 }

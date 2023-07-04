@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class index extends javax.swing.JFrame {
     Matriz matriz = new Matriz();
+    MatrizFloat matrizfloat = new MatrizFloat(3, 4);
     DefaultTableModel modelo = new DefaultTableModel();
 
     /**
@@ -38,11 +39,14 @@ public class index extends javax.swing.JFrame {
         btnGenerarMatriz = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemLlenarMatriz = new javax.swing.JMenuItem();
+        jMenuItemMontante = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +74,19 @@ public class index extends javax.swing.JFrame {
 
         jLabel2.setText("Cantidad de columnas:");
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -86,6 +103,14 @@ public class index extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemLlenarMatriz);
 
+        jMenuItemMontante.setText("Solucion Montante");
+        jMenuItemMontante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMontanteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemMontante);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -97,7 +122,6 @@ public class index extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -107,7 +131,10 @@ public class index extends javax.swing.JFrame {
                             .addComponent(editTextFila, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editTextColumna, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(btnGenerarMatriz)))
+                        .addComponent(btnGenerarMatriz))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)))
                 .addContainerGap(405, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,14 +149,15 @@ public class index extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(editTextColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(editTextColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnGenerarMatriz)
-                        .addGap(43, 43, 43)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                        .addComponent(btnGenerarMatriz)))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,7 +171,8 @@ public class index extends javax.swing.JFrame {
                 matriz.setColumna(Integer.parseInt(editTextColumna.getText()));        
                 modelo.setColumnCount(matriz.getColumna());
                 modelo.setRowCount(matriz.getFila());        
-                jTable1.setModel(modelo);                                           
+                jTable1.setModel(modelo); 
+                jTable2.setModel(modelo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: introdusca la cantidad de Filas y Columnas");
         }        
@@ -153,6 +182,13 @@ public class index extends javax.swing.JFrame {
         // TODO add your handling code here:
         matriz.matrizAleatoria(jTable1);
     }//GEN-LAST:event_jMenuItemLlenarMatrizActionPerformed
+
+    private void jMenuItemMontanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMontanteActionPerformed
+        // TODO add your handling code here:
+        matrizfloat.setMatriz(jTable1);
+        matrizfloat.metodoMontante();        
+        matrizfloat.mostrarResultado(jTable2);
+    }//GEN-LAST:event_jMenuItemMontanteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +236,10 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemLlenarMatriz;
+    private javax.swing.JMenuItem jMenuItemMontante;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
