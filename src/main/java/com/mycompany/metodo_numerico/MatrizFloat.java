@@ -85,6 +85,10 @@ public class MatrizFloat extends JTable {
         this.solucion[2] = x3;
     }
     
+    public float[] getSolucion(){
+        return solucion;
+    }
+    
     private void ponerColumnasACeros(int filaPivote){
         for(int c=0; c<=filaPivote; c++){
             for(int f=0; f<this.getFila(); f++){

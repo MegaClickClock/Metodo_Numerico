@@ -51,16 +51,12 @@ public class Matriz extends JTable {
         this.matriz = new int[fila][columna];
     }
 
-    public void matrizAleatoria(JTable matriz) {
-        if (getColumna() == 0) {
-            JOptionPane.showMessageDialog(null, "matriz no configurada", "Error", HEIGHT);
-        } else {
-            for (int i = 0; i < getFila(); i++) {
-                for (int j = 0; j < getColumna(); j++) {
-                    int numeroAleatorio = (int) (Math.random() * 10 + 1);
-                    matriz.setValueAt(numeroAleatorio, i, j);
-                }
+    public void matrizAleatoria(JTable matriz) {        
+        for (int i = 0; i < getFila(); i++) {
+            for (int j = 0; j < getColumna(); j++) {
+                int numeroAleatorio = (int) (Math.random() * 10 + 1);
+                matriz.setValueAt(numeroAleatorio, i, j);
             }
-        }
+        }        
     }
 }
